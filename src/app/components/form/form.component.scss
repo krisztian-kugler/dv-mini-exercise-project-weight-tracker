@@ -1,0 +1,61 @@
+wt-form {
+  display: block;
+
+  form {
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+
+    > *:not(:last-child) {
+      margin-right: 1rem;
+    }
+
+    .label {
+      display: flex;
+      flex-direction: column;
+
+      small {
+        margin-bottom: 0.25rem;
+        font-size: 0.75rem;
+        font-weight: bold;
+      }
+    }
+
+    input {
+      height: 42px;
+      padding: 0.5rem 1rem;
+      border: 1px solid rgb(200, 208, 218);
+      border-radius: 0.25rem;
+      font-family: Inter, sans-serif;
+      font-size: 1rem;
+      font-weight: bold;
+      outline: none;
+
+      &:focus {
+        border: 1px solid rgb(70, 147, 243);
+        box-shadow: 0 0 0.125rem rgb(70, 147, 243);
+      }
+    }
+
+    .input-date {
+      width: 14rem;
+    }
+
+    .input-weight {
+      width: 7rem;
+    }
+
+    button {
+      align-self: flex-end;
+      height: 42px;
+      padding: 0 2rem;
+      background-color: rgb(70, 147, 243);
+      border: none;
+      border-radius: 0.25rem;
+      color: white;
+      font-family: Inter, sans-serif;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+  }
+}
