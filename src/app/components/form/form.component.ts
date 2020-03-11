@@ -1,5 +1,7 @@
 import { Component, DependencyInjector, formatForDateInput } from "@core";
-import EventBus from "../../services/event-bus";
+import EventService from "../../services/event.service";
+import StorageService from "../../services/storage.service";
+import { Entry } from "src/app/models/entry.model";
 import "./form.component.scss";
 
 @Component({
@@ -10,14 +12,16 @@ export default class FormComponent extends HTMLElement {
   form: HTMLFormElement;
   dateInput: HTMLInputElement;
   weightInput: HTMLInputElement;
-  eventBus: EventBus;
+  private eventService: EventService;
+  private storage: StorageService;
 
   constructor() {
     super();
   }
 
   connectedCallback() {
-    this.eventBus = DependencyInjector.inject(this, EventBus);
+    this.eventService = DependencyInjector.inject(this, EventService);
+    this.storage = DependencyInjector.inject(this, StorageService);
     this.render();
   }
 
@@ -46,10 +50,15 @@ export default class FormComponent extends HTMLElement {
   addEventListeners() {
     this.form.addEventListener("submit", event => {
       event.preventDefault();
-      this.eventBus.addEntry$.next({
+
+      const entry: Entry = {
         date: new Date(this.dateInput.value),
         weight: +this.weightInput.value
-      });
+      };
+
+      this.storage.createEntry(entry);
+
+      this.eventService.addEntry$.next(entry);
     });
   }
 }

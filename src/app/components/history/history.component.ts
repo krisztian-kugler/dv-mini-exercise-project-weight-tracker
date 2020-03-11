@@ -1,6 +1,7 @@
 import { Component, DependencyInjector } from "@core";
-import EventBus from "../../services/event-bus";
 import HistoryItemComponent from "../history-item/history-item.component";
+import EventService from "../../services/event.service";
+import StorageService from "../../services/storage.service";
 import { Entry } from "src/app/models/entry.model";
 import "./history.component.scss";
 
@@ -8,20 +9,26 @@ import "./history.component.scss";
   selector: "wt-history"
 })
 export default class HistoryComponent extends HTMLElement {
-  eventBus: EventBus;
+  private eventService: EventService;
+  private storage: StorageService;
 
   constructor() {
     super();
   }
 
-  connectedCallback() {
-    this.eventBus = DependencyInjector.inject(this, EventBus);
-    this.render();
+  addEntry(entry: Entry) {
+    const item = document.createElement("wt-history-item") as HistoryItemComponent;
+    item.entry = entry;
+    this.querySelector(".list").append(item);
+  }
 
-    this.eventBus.addEntry$.subscribe((entry: Entry) => {
-      const item = document.createElement("wt-history-item") as HistoryItemComponent;
-      item.entry = entry;
-      this.querySelector(".list").append(item);
+  connectedCallback() {
+    this.eventService = DependencyInjector.inject(this, EventService);
+    this.storage = DependencyInjector.inject(this, StorageService);
+    this.render();
+    this.storage.entries.forEach(entry => this.addEntry(entry));
+    this.eventService.addEntry$.subscribe((entry: Entry) => {
+      this.addEntry(entry);
     });
   }
 

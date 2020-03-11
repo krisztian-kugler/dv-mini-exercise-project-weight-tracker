@@ -1,10 +1,11 @@
 import { Component } from "@core";
-import EventBus from "../services/event-bus";
+import EventService from "../services/event.service";
+import StorageService from "../services/storage.service";
 import "./root.component.scss";
 
 @Component({
   selector: "wt-root",
-  providers: [EventBus]
+  providers: [EventService, StorageService]
 })
 export default class RootComponent extends HTMLElement {
   constructor() {
