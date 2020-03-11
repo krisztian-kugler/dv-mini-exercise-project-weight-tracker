@@ -1,4 +1,4 @@
-import { Component } from "@core";
+import { Component, dateFormatter } from "@core";
 import { Entry } from "src/app/models/entry.model";
 import "./history-item.component.scss";
 
@@ -18,8 +18,8 @@ export default class HistoryItemComponent extends HTMLElement {
 
   render() {
     this.innerHTML = /*html*/ `
-      <div>${this.entry.weight + "kg"}</div>
-      <div>${this.entry.date.toDateString()}</div>
+      <div>${this.entry.weight.toFixed(1) + " kg"}</div>
+      <div>${dateFormatter(this.entry.date)}</div>
     `;
   }
 }

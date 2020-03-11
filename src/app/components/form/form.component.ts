@@ -1,4 +1,4 @@
-import { Component, DependencyInjector, formatDate } from "@core";
+import { Component, DependencyInjector, formatForDateInput } from "@core";
 import EventBus from "../../services/event-bus";
 import "./form.component.scss";
 
@@ -26,11 +26,13 @@ export default class FormComponent extends HTMLElement {
     <form>
       <label class="label">
         <small>Date</small>
-        <input class="input-date" type="datetime-local" value="${formatDate(this.date)}" required />
+        <input class="input-date" type="datetime-local" value="${formatForDateInput(this.date)}" max="${formatForDateInput(
+      this.date
+    )}" required />
       </label>
       <label class="label">
         <small>Weight (kg)</small>
-        <input class="input-weight" type="number" required />
+        <input class="input-weight" type="number" min="0" step="0.1" required />
       </label>
       <button type="submit">Add</button>
     <form>`;
