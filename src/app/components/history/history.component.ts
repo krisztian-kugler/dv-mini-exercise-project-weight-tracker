@@ -4,7 +4,7 @@ import EventService from "../../services/event.service";
 import StorageService from "../../services/storage.service";
 import { Entry } from "src/app/models/entry.model";
 import "./history.component.scss";
-import { pivotHelper } from "../../core/utils/quicksort";
+import { quicksort } from "../../core/utils/quicksort";
 
 @Component({
   selector: "wt-history"
@@ -34,7 +34,7 @@ export default class HistoryComponent extends HTMLElement {
   }
 
   render() {
-    pivotHelper([9, 23, 4, 9, 3, 29, 6, 54, 10, 8, 1, 78, 11, 5, 2, 0, 18, 20, 7]);
+    console.log(quicksort([9, 23, 4, 9, 3, 29, 6, 46, 44, 54, 10, 8, 1, 136, 78, 11, 5, 2, 0, 22, 18, 20, 7]));
 
     this.innerHTML = /*html*/ `
       <h2>History</h2>
