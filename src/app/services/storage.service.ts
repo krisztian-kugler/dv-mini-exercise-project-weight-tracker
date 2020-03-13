@@ -1,25 +1,26 @@
 import { Entry } from "../models/entry.model";
+import { quicksort } from "../core/utils/quicksort";
+
+interface EntryWithDateString {
+  date: string;
+  weight: number;
+}
 
 export default class StorageService {
-  public entries: Entry[] = [];
-
-  constructor() {
-    this.getEntries();
+  constructor(public entries: Entry[] = []) {
+    this.entries = quicksort(this.getEntries(), "date", "descending");
   }
 
-  createEntry(entry: Entry) {
+  public createEntry(entry: Entry) {
     this.entries.push(entry);
+    quicksort(this.getEntries(), "date").reverse();
     localStorage.setItem("weight-tracker", JSON.stringify(this.entries));
   }
 
-  getEntries() {
+  private getEntries(): Entry[] {
     if (localStorage.getItem("weight-tracker")) {
-      this.entries = (JSON.parse(localStorage.getItem("weight-tracker")) as Array<any>).map(entry => {
-        return {
-          ...entry,
-          date: new Date(entry.date)
-        };
-      });
+      const parsedEntries = JSON.parse(localStorage.getItem("weight-tracker")) as Array<EntryWithDateString>;
+      return parsedEntries.map(entry => ({ ...entry, date: new Date(entry.date) }));
     }
   }
 }

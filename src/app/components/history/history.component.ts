@@ -34,8 +34,6 @@ export default class HistoryComponent extends HTMLElement {
   }
 
   render() {
-    console.log(quicksort([9, 23, 4, 9, 3, 29, 6, 46, 44, 54, 10, 8, 1, 136, 78, 11, 5, 2, 0, 22, 18, 20, 7]));
-
     this.innerHTML = /*html*/ `
       <h2>History</h2>
       <div class="list"></div>

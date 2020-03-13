@@ -1,9 +1,11 @@
-function partition(arr: number[], start = 0, end = arr.length - 1): number {
+type Order = "ascending" | "descending";
+
+function partition(arr: any[], prop: string, order: Order = "ascending", start: number = 0, end: number = arr.length - 1): number {
   const pivot = arr[start];
   let swaps = 0;
 
   for (let i = start + 1; i <= end; i++) {
-    if (arr[i] < pivot) {
+    if (order === "ascending" ? arr[i][prop] < pivot[prop] : arr[i][prop] > pivot[prop]) {
       swaps++;
       [arr[start + swaps], arr[i]] = [arr[i], arr[start + swaps]];
     }
@@ -14,12 +16,12 @@ function partition(arr: number[], start = 0, end = arr.length - 1): number {
   return start + swaps;
 }
 
-export function quicksort(arr: number[], start = 0, end = arr.length - 1): number[] {
+export function quicksort(arr: any[], prop: string, order: Order = "ascending", start: number = 0, end: number = arr.length - 1): any[] {
   if (start < end) {
-    const splitIndex = partition(arr, start, end);
+    const splitIndex = partition(arr, prop, order, start, end);
 
-    quicksort(arr, start, splitIndex - 1);
-    quicksort(arr, splitIndex + 1, end);
+    quicksort(arr, prop, order, start, splitIndex - 1);
+    quicksort(arr, prop, order, splitIndex + 1, end);
   }
 
   return arr;
