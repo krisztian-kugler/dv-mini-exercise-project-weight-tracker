@@ -1,10 +1,5 @@
-import { Entry } from "../models/entry.model";
-import { quicksort } from "../core/utils/quicksort";
-
-interface EntryWithDateString {
-  date: string;
-  weight: number;
-}
+import { Entry, EntryWithDateString } from "../models/entry.model";
+import { quicksort } from "../utils/quicksort";
 
 export default class StorageService {
   constructor(public entries: Entry[] = []) {

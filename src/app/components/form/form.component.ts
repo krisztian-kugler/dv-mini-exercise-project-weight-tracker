@@ -1,8 +1,9 @@
-import { Component, DependencyInjector, formatForDateInput } from "@core";
+import { Component, DependencyInjector } from "@core";
 import EventService from "../../services/event.service";
 import StorageService from "../../services/storage.service";
 import { Entry } from "src/app/models/entry.model";
 import "./form.component.scss";
+import { formatForDateInput } from "@utils";
 
 @Component({
   selector: "wt-form"

@@ -12,6 +12,7 @@ module.exports = {
     extensions: [".js", ".ts", ".tsx"],
     alias: {
       "@core": path.resolve(__dirname, "src/app/core"),
+      "@utils": path.resolve(__dirname, "src/app/utils"),
       "@event-emitter": path.resolve(__dirname, "src/libs/event-emitter")
     }
   },

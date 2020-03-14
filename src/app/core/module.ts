@@ -1,4 +1,4 @@
-import { DependencyInjector } from "@core/index";
+import { DependencyInjector } from "@core";
 
 interface ModuleConfig {
   components: any[];

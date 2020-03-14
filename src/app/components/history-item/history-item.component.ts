@@ -1,6 +1,7 @@
-import { Component, dateFormatter } from "@core";
+import { Component } from "@core";
 import { Entry } from "src/app/models/entry.model";
 import "./history-item.component.scss";
+import { dateFormatter } from "@utils";
 
 @Component({
   selector: "wt-history-item"

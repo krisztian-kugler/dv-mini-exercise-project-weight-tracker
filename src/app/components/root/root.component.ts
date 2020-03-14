@@ -1,6 +1,6 @@
 import { Component } from "@core";
-import EventService from "../services/event.service";
-import StorageService from "../services/storage.service";
+import EventService from "../../services/event.service";
+import StorageService from "../../services/storage.service";
 import "./root.component.scss";
 
 @Component({

@@ -1,6 +1,6 @@
-import { Subject } from "../../libs/observable/index";
+import { EventEmitter } from "@event-emitter";
 import { Entry } from "../models/entry.model";
 
 export default class EventService {
-  addEntry$ = new Subject<Entry>();
+  addEntry$ = new EventEmitter<Entry>();
 }

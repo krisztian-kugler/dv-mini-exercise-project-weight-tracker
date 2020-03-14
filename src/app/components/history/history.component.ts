@@ -4,7 +4,6 @@ import EventService from "../../services/event.service";
 import StorageService from "../../services/storage.service";
 import { Entry } from "src/app/models/entry.model";
 import "./history.component.scss";
-import { quicksort } from "../../core/utils/quicksort";
 
 @Component({
   selector: "wt-history"
