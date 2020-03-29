@@ -12,6 +12,8 @@ export default class StorageService {
     localStorage.setItem("weight-tracker", JSON.stringify(this.entries));
   }
 
+  public deleteEntry() {}
+
   private getEntries(): Entry[] {
     if (localStorage.getItem("weight-tracker")) {
       const parsedEntries = JSON.parse(localStorage.getItem("weight-tracker")) as Array<EntryWithDateString>;

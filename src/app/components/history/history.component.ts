@@ -19,7 +19,21 @@ export default class HistoryComponent extends HTMLElement {
   addEntry(entry: Entry) {
     const item = document.createElement("wt-history-item") as HistoryItemComponent;
     item.entry = entry;
+    item.addEventListener("click", this.deleteEntry.bind(this, item));
     this.querySelector(".list").append(item);
+  }
+
+  deleteEntry(element: HistoryItemComponent) {
+    /* let index: number;
+    for (let i = 0; i < element.parentElement.children.length; i++) {
+      if (element.parentElement.children[i] === element) {
+        index = i;
+        break;
+      }
+    } */
+    // this.storage.entries = this.storage.entries.filter((_, i) => i !== index);
+    this.storage.entries = this.storage.entries.filter(entry => entry !== element.entry);
+    element.remove();
   }
 
   connectedCallback() {
@@ -33,7 +47,7 @@ export default class HistoryComponent extends HTMLElement {
   }
 
   render() {
-    this.innerHTML = /*html*/ `
+    this.innerHTML = `
       <h2>History</h2>
       <div class="list"></div>
     `;
